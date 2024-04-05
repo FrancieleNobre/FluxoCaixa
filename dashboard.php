@@ -45,15 +45,9 @@ include_once './func/funcoes.php';
             <div class="col-md-2 preto vh-100">
 
                 <ul class="list-group margem">
-                    <button class="btn">
-                        <li class="list-group-item preto text-white"><a href="./dashboard.php?page=cliente" class="textinho">Cliente</a></li>
-                    </button>
-                    <button class="btn">
-                        <li class="list-group-item preto text-white"><a href="./dashboard.php?page=tiposervico" class="textinho">Tipo de Serviços</a></li>
-                    </button>
-                    <button class="btn">
-                        <li class="list-group-item preto text-white"><a href="./dashboard.php?page=adm" class="textinho">ADM</a></li>
-                    </button>
+                        <li class="list-group-item preto text-white btn"><a href="./dashboard.php?page=cliente" class="textinho">Cliente</a></li>
+                        <li class="list-group-item preto text-white btn"><a href="./dashboard.php?page=tiposervico" class="textinho">Tipo de Serviços</a></li>
+                        <li class="list-group-item preto text-white btn"><a href="./dashboard.php?page=adm" class="textinho">ADM</a></li>
                 </ul>
 
 
