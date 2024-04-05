@@ -45,9 +45,13 @@ include_once './func/funcoes.php';
             <div class="col-md-2 preto vh-100">
 
                 <ul class="list-group margem">
-                        <li class="list-group-item preto text-white btn"><a href="./dashboard.php?page=cliente" class="textinho">Cliente</a></li>
-                        <li class="list-group-item preto text-white btn"><a href="./dashboard.php?page=tiposervico" class="textinho">Tipo de Serviços</a></li>
-                        <li class="list-group-item preto text-white btn"><a href="./dashboard.php?page=adm" class="textinho">ADM</a></li>
+                    <center>
+                        <li class="preto text-white mb-2"><a href="./dashboard.php?page=contratacao" class="textinho">Contratação</a></li>
+                        <li class="preto text-white mb-2"><a href="./dashboard.php?page=tipospagamento" class="textinho">Tipos de Pagamentos</a></li>
+                        <li class="preto text-white mb-2"><a href="./dashboard.php?page=cliente" class="textinho">Cliente</a></li>
+                        <li class="preto text-white mb-2"><a href="./dashboard.php?page=tiposervico" class="textinho">Tipo de Serviços</a></li>
+                        <li class="preto text-white"><a href="./dashboard.php?page=adm" class="textinho">ADM</a></li>
+                    </center>
                 </ul>
 
 
@@ -61,6 +65,10 @@ include_once './func/funcoes.php';
                             include_once 'tiposervico.php';
                         } else if ($_GET['page'] == 'adm'){
                             include_once 'adm.php';
+                        } else if ($_GET['page'] == 'contratacao'){
+                            include_once 'contratacao.php';
+                        } else if ($_GET['page'] == 'tipospagamento'){
+                            include_once 'tipospagamento.php';
                         }
                     } else{
                         echo "<center><h1 class='mt-5'>Bem Vindo!!!</h1></center>";

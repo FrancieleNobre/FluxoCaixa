@@ -48,7 +48,7 @@ function listarTabela()
     $conn = conectar();
     try {
         $conn->beginTransaction();
-        $sqlLista = $conn->prepare("SELECT f.idfilme, f.nomefilme, g.genero FROM filme f INNER JOIN generofilme g ON f.idgenerofilme = g.idgenerofilme ORDER BY f.idfilme;");
+        $sqlLista = $conn->prepare("SELECT c.idcontrato, ce.nome, ts.tiposervico, tp.tipopagamento, a.nome, c.valor, c.prazoentrega, c.parcelas  FROM contrato c INNER JOIN cliente ce ON ce.idcliente = c.idcliente INNER JOIN tiposervico ts ON ts.idtiposervico = c.idtiposervico INNER JOIN tipopagamento tp ON tp.idtipopagamento = c.idtipopagamento INNER JOIN adm a ON a.idadm = c.idadm;");
         //        $sqlLista->bindValue(1, $campoParametro, PDO::PARAM_INT);
         $sqlLista->execute();
         $conn->commit();

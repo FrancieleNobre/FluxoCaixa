@@ -39,6 +39,15 @@ if ( isset($_POST['nomecadcli'])) {
     exit; 
 }
 
+if ( isset($_POST['nomecadpag'])) {
+    $pagamento = $_POST['nomecadpag'];
+    $register = $conn->prepare("INSERT INTO tipopagamento (tipopagamento) VALUES (:tipopagamento)");
+    $register->bindParam(':tipopagamento', $pagamento);
+    $register->execute();
+    header('Location: dashboard.php?page=tipospagamento');
+    exit; 
+}
+
 
 
 

@@ -38,6 +38,15 @@ if (isset($_GET['idservico'])) {
     header('location:dashboard.php?page=cliente');
   }
 
-
+  if (isset($_GET['idpag'])) {
+    $id = $_GET['idpag'];
+    $delete = "DELETE FROM tipopagamento WHERE idtipopagamento = :id";
+    $delete = $conn->prepare($delete);
+    $delete->bindParam(':id', $id);
+    $conn->beginTransaction();
+    $delete->execute();
+    $conn->commit();
+    header('location:dashboard.php?page=tipospagamento');
+  }
 
 

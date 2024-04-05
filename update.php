@@ -47,4 +47,17 @@ if (isset($_POST['idaltcli'])) {
     header('Location: dashboard.php?page=cliente'); 
 }
 
+if (isset($_POST['idaltpag'])) {
+    $id = $_POST['idaltpag'];
+    $tipopagamento = $_POST['pagalt'];
+    $status = $_POST['ativoaltpag'];
+    $update = "UPDATE tipopagamento SET tipopagamento = :tipopagamento , ativo = :ativo  WHERE idtipopagamento = :idtipopagamento";
+    $stmt = $conn->prepare($update);
+    $stmt->bindParam(':idtipopagamento', $id); 
+    $stmt->bindParam(':tipopagamento', $tipopagamento);
+    $stmt->bindParam(':ativo', $status);
+    $stmt->execute(); 
+    header('Location: dashboard.php?page=tipospagamento'); 
+}
+
 ?>

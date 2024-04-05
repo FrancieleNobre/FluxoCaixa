@@ -8,12 +8,12 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col" class="bg-dark">#</th>
-                <th scope="col" class="bg-dark">Nome</th>
-                <th scope="col" class="bg-dark">CPF</th>
-                <th scope="col" class="bg-dark">Status</th>
-                <th scope="col" class="bg-dark">Ação</th>
-                <th scope="col" class="bg-dark"><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#cadcli">CADASTRAR</button></th>
+                <th scope="col" class="bg-dark text-white">#</th>
+                <th scope="col" class="bg-dark text-white">Nome</th>
+                <th scope="col" class="bg-dark text-white">CPF</th>
+                <th scope="col" class="bg-dark text-white">Status</th>
+                <th scope="col" class="bg-dark text-white">Ação</th>
+                <th scope="col" class="bg-dark text-white"><button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#cadcli">CADASTRAR</button></th>
             </tr>
         </thead>
         <tbody>
