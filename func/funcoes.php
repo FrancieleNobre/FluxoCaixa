@@ -22,7 +22,7 @@
 //     $conn = null;
 // }
 
-function listargenero($campos, $tabela)
+function listar($campos, $tabela)
 {
     $conn = conectar();
     try {

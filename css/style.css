@@ -1,3 +1,16 @@
 .body{
     background-color: rgb(87, 87, 87);
 }
+
+.margem{
+    margin-top: 100%;
+}
+
+.preto{
+    background-color: black;
+}
+
+.textinho{
+    text-decoration: none;
+    color: white;
+}
