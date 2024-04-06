@@ -18,6 +18,7 @@
         <tbody>
             <?php
             $servico = listar('*', 'tiposervico');
+            if ($contrato !== 'Vazio') {
             foreach ($servico as $servicos) {
                 $idservico = $servicos->idtiposervico;
                 $tiposervico = $servicos->tiposervico;
@@ -112,7 +113,12 @@
                 </tr>
             <?php
             }
+        } else {
             ?>
+            <td class="text-center">Nada para mostrar</td>
+        <?php
+        }
+        ?>
         </tbody>
     </table>
 </div>

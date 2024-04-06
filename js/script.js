@@ -73,3 +73,14 @@ function esconderProcessando() {
         document.body.removeChild(divProcessando)
     }
 }
+
+const aprazo = document.getElementById('aprazo');
+const avista = document.getElementById('avista');
+const div = document.getElementById('divprazo');
+
+aprazo.addEventListener('click',function(){
+    div.style.display="block";
+})
+avista.addEventListener('click',function(){
+    div.style.display="none";
+})

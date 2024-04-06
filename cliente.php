@@ -19,6 +19,7 @@
         <tbody>
             <?php
             $cliente = listar('*', 'cliente');
+            if ($contrato !== 'Vazio') {
             foreach ($cliente as $clientes) {
                 $idcliente = $clientes->idcliente;
                 $nomeC = $clientes->nome;
@@ -120,7 +121,12 @@
                 </tr>
             <?php
             }
+        } else {
             ?>
+            <td class="text-center">Nada para mostrar</td>
+        <?php
+        }
+        ?>
         </tbody>
     </table>
 </div>
