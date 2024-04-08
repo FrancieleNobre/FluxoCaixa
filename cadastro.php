@@ -9,7 +9,7 @@ if ( isset($_POST['nomecadadm'])) {
     $cpf = $_POST['cpfcadadm'];
     $senha = $_POST['senhacadadm']; 
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
-    $register = $conn->prepare("INSERT INTO adm (nome, cpf, senha) VALUES (:nome, :cpf, :senha)");
+    $register = $conn->prepare("INSERT INTO adm (nomeadm, cpfadm, senha) VALUES (:nome, :cpf, :senha)");
     $register->bindParam(':nome', $nome);
     $register->bindParam(':cpf', $cpf);
     $register->bindParam(':senha', $senha_hash);

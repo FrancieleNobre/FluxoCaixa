@@ -9,7 +9,7 @@ if (isset($_POST['idaltadm'])) {
     $nome = $_POST['nomeimpadm'];
     $cpf = $_POST['cpfimpadm'];
     $ativo = $_POST['ativoadmimp'];
-    $update = "UPDATE adm SET nome = :nome, cpf = :cpf, ativo = :ativo WHERE idadm = :idadm";
+    $update = "UPDATE adm SET nomeadm = :nome, cpfadm = :cpf, ativo = :ativo WHERE idadm = :idadm";
     $stmt = $conn->prepare($update);
     $stmt->bindParam(':idadm', $id); 
     $stmt->bindParam(':nome', $nome);

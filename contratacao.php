@@ -41,7 +41,7 @@
                         <td><?php echo $tiposervico ?></td>
                         <td><?php echo $tipopagamento ?></td>
                         <td><?php echo $nomeadm ?></td>
-                        <td><?php echo $valor ?></td>
+                        <td>R$ <?php echo $valor ?></td>
                         <td><?php echo $prazoentrega ?></td>
 
                         <td>
@@ -83,8 +83,8 @@
                                         <p><b>TIPO DE SERVIÇO:</b> <?php echo $tiposervico ?></p>
                                         <p><b>TIPO DE PAGAMENTO:</b> <?php echo $tipopagamento ?></p>
                                         <p><b>ADMINISTRADOR:</b> <?php echo $nomeadm ?></p>
-                                        <p><b>VALOR CONTRATADO:</b> <?php echo $valor ?></p>
-                                        <p><b>VALOR DE ENTRADA:</b> <?php echo $valorentrada ?></p>
+                                        <p><b>VALOR CONTRATADO: R$ </b> <?php echo $valor ?></p>
+                                        <p><b>VALOR DE ENTRADA: R$ </b> <?php echo $valorentrada ?></p>
                                         <p><b>PARCELAS:</b> <?php echo $parcelas ?></p>
                                         <p><b>PRAZO DE ENTREGA:</b> <?php echo $prazoentrega ?></p>
                                     </div>
@@ -152,7 +152,7 @@
                         <input type="text" class="form-control" id="valor" name="valor" placeholder="Informe o valor contratado">
                     </div>
                     <label for="selectpag" class="form-label">Tipo de Pagamento:</label>
-                    <select class="form-select" id="selectpag" name="selectpag"> <!-- Adicionado id e name -->
+                    <select class="form-select" id="selectpag" name="selectpag">
                         <option value="1" id="avista">À vista</option>
                         <option value="2" id="aprazo">A Prazo</option>
                     </select>

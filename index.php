@@ -21,11 +21,11 @@
                 <form>
                     <div class="mb-3">
                         <label for="cpfinput" class="form-label">CPF:</label>
-                        <input type="text" class="form-control" id="cpfinput" name="cpfinput">
+                        <input type="text" class="form-control" id="cpf" name="cpf">
                     </div>
                     <div class="mb-3">
                         <label for="senhainput" class="form-label">Senha:</label>
-                        <input type="password" class="form-control" id="senhainput" name="senhainput">
+                        <input type="password" class="form-control" id="senha" name="senha">
                     </div>
                     <center>
                         <button type="button" class="btn btn-outline-dark" onclick="fazerLogin()">Login</button>

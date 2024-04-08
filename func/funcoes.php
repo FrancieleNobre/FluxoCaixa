@@ -233,36 +233,36 @@ function cadastrarcliente($nome, $nascimento, $celular, $cadastro)
 
 // }
 
-function validarSenhaCriptografia($campos, $tabela, $campoBdString, $campoBdString2, $campoParametro, $campoParametro2, $campoBdAtivo, $valorAtivo)
+function verificarSenhaCriptografada($campos, $tabela, $campoBdEmail, $campoEmail, $campoBdSenha, $campoSenha, $campoBdAtivo, $campoAtivo)
 {
     $conn = conectar();
-
     try {
         $conn->beginTransaction();
-        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoBdString = ? AND $campoBdAtivo = ?");
-        $sqlLista->bindValue(1, $campoParametro, PDO::PARAM_STR);
-        $sqlLista->bindValue(2, $valorAtivo, PDO::PARAM_STR);
-        $sqlLista->execute();
+        $sqlverificar = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoBdEmail = ? AND $campoBdAtivo = ?");
+        $sqlverificar->bindValue(1, $campoEmail, PDO::PARAM_STR);
+        $sqlverificar->bindValue(2, $campoAtivo, PDO::PARAM_STR);
+        $sqlverificar->execute();
         $conn->commit();
-
-        if ($sqlLista->rowCount() > 0) {
-            $retornoSql = $sqlLista->fetch(PDO::FETCH_OBJ);
-            $senha_hash = $retornoSql->$campoBdString2;
-            if (password_verify($campoParametro2, $senha_hash)) {
+        if ($sqlverificar->rowCount() > 0) {
+            $retornoSql = $sqlverificar->fetch(PDO::FETCH_OBJ);
+            $senha_hash = $retornoSql->$campoBdSenha;
+            if (password_verify($campoSenha, $senha_hash)) {
                 return $retornoSql;
+            } else {
+                return 'senha';
             }
-            return 'senha';
         } else {
             return 'usuario';
         }
-        return null;
     } catch (Throwable $e) {
         $error_message = 'Throwable: ' . $e->getMessage() . PHP_EOL;
         $error_message .= 'File: ' . $e->getFile() . PHP_EOL;
         $error_message .= 'Line: ' . $e->getLine() . PHP_EOL;
         error_log($error_message, 3, 'log/arquivo_de_log.txt');
         $conn->rollback();
-        throw $e;
+        return 'Exception -> ' . $e->getMessage();
+    } finally {
+        $conn = null;
     }
 }
 

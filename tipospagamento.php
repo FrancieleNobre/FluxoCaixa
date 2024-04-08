@@ -2,7 +2,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item text-white">Dashboard</li>
-            <li class="breadcrumb-item text-white" aria-current="page">Contratação</li>
+            <li class="breadcrumb-item text-white" aria-current="page">Tipos de pagamento</li>
         </ol>
     </nav>
     <table class="table">
