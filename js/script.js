@@ -20,12 +20,13 @@ function fazerLogin() {
         return;
     } else if (senha.length < 8) {
         errorMsg.style.display = 'block';
-        errorMsg.innerHTML = 'Sua senha deve conter 8 ou mais digitos.';
+        errorMsg.innerHTML = 'Sua senha deve conter 8 ou mais dígitos.';
         return;
     } else {
         errorMsg.style.display = 'none';
     }
-    Processando();
+
+    Processando(); // Adiciona exibição de "Processando"
 
     fetch('login.php', {
         method: 'POST',
@@ -34,15 +35,20 @@ function fazerLogin() {
         },
         body: 'cpf=' + encodeURIComponent(cpf) + '&senha=' + encodeURIComponent(senha)
     })
-        .then(response => response.json())
+        .then(response => {
+            esconderProcessando(); // Esconde "Processando" após a resposta
+            if (!response.ok) {
+                throw new Error('Erro na requisição: ' + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => {
-            esconderProcessando();
             if (data.success) {
                 errorMsg.classList.remove('alert-danger');
                 errorMsg.classList.add('alert-success');
                 errorMsg.innerHTML = data.message;
                 errorMsg.style.display = 'block';
-                Processando()
+                Processando(); // Adiciona novamente a exibição de "Processando" antes de redirecionar
                 setTimeout(function () {
                     window.location.href = 'dashboard.php';
                 }, 2000);
@@ -53,6 +59,9 @@ function fazerLogin() {
         })
         .catch(error => {
             console.error('Erro na requisição:', error);
+            errorMsg.style.display = 'block';
+            errorMsg.innerHTML = 'Erro na requisição. Por favor, tente novamente mais tarde.';
+            esconderProcessando(); // Esconde "Processando" em caso de erro
         });
 }
 
@@ -70,7 +79,7 @@ function Processando() {
 function esconderProcessando() {
     var divProcessando = document.getElementById('processando');
     if (divProcessando) {
-        document.body.removeChild(divProcessando)
+        document.body.removeChild(divProcessando);
     }
 }
 
@@ -78,9 +87,10 @@ const aprazo = document.getElementById('aprazo');
 const avista = document.getElementById('avista');
 const div = document.getElementById('divprazo');
 
-aprazo.addEventListener('click',function(){
-    div.style.display="block";
-})
-avista.addEventListener('click',function(){
-    div.style.display="none";
-})
+aprazo.addEventListener('click', function () {
+    div.style.display = "block";
+});
+
+avista.addEventListener('click', function () {
+    div.style.display = "none";
+});

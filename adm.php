@@ -21,8 +21,8 @@
             $adm = listar('*', 'adm');
             foreach ($adm as $adms) {
                 $id = $adms->idadm;
-                $nome = $adms->nome;
-                $cpf = $adms->cpf;
+                $nome = $adms->nomeadm;
+                $cpf = $adms->cpfadm;
                 $ativo = $adms->ativo;
 
             ?>

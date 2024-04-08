@@ -1,29 +1,54 @@
 <?php
-include_once '.config/constantes.php';
-include_once '.config/conexao.php';
-include_once '.func/funcoes.php';
+
+include_once "./config/conexao.php";
+include_once "./config/constantes.php";
+
+$POST = filter_input_array(INPUT_POST);
+$email = $_POST['cpfinput'];
+$senha = $_POST['senhainput'];
+$options = [
+    'cost' => 12
+];
 $conn = conectar();
-
-$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-
-$cpf = $dados['cpfinput'];
-$senha = $dados['senhainput'];
-
- $retornoValidar = validarSenhaCriptografia('idadm, nome, cpf, senha', 'adm', 'cpf', 'senha', $cpf, $senha, 'ativo', 'A');
-if ($retornoValidar) {
-    if ($retornoValidar == 'usuario') {
-        echo json_encode(['success' => false, 'message' => 'CPF inválido!']);
-    } else if ($retornoValidar == 'senha') {
-        echo json_encode(['success' => false, 'message' => 'Senha inválida!']);
+try {
+    $select = $conn->prepare("SELECT idadm, nomeadm, cpfadm, senha FROM adm WHERE cpfadm = :cpfadm");
+    $select->bindValue(":cpfadm", $email);
+    $conn->beginTransaction();
+    $select->execute();
+    $conn->commit();
+    if ($select->rowCount() > 0) {
+        $select = $select->fetch(PDO::FETCH_ASSOC);
+        if (password_verify($senha, $select['senha'])) {
+            $result = $select;
+        } else {
+            $result = 'senha';
+        }
     } else {
-        $_SESSION['idadm'] = $retornoValidar -> idadm ;
-        $_SESSION['nome'] = $retornoValidar -> nome;
-        $_SESSION['cpf'] = $retornoValidar -> cpf;
-        echo json_encode(['success' => true, 'message' => 'Login efetuado com sucesso! Redirecionando']);
+        $result = 'user';
     }
-} else {
-    echo json_encode(['success' => false, 'message' => 'Usuário ou senha inválidos!']);
+} catch (PDOException $e) {
+    echo ('ERROR - ' . $e->getMessage());
+    $conn->rollBack();
 }
-
-
-?>
+if (isset($result)) {
+    ob_start();
+    switch ($result) {
+        case 'user':
+            $response = ['success' => false, 'message' => 'Usúario Inválido!'];
+            break;
+        case 'senha':
+            $response = ['success' => false, 'message' => 'Senha incorreta!'];
+            break;
+        default:
+            session_start();
+            $dados = ['idadm' => $select['idadm'], 'nome' => $select['nomeadm'], 'email' => $select['cpfadm']];
+            $_SESSION['idadm'] = $select['idadm'];
+            $_SESSION['nome'] = $select['nome'];
+            $_SESSION['email'] = $select['email'];
+            $response = ['success' => true, 'message' => 'Logado com sucesso!', 'dados' => $dados];
+            break;
+    }
+    header('Content-Type: application/json');
+    echo (json_encode($response));
+    ob_end_flush();
+}

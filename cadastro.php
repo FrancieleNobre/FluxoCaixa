@@ -48,6 +48,29 @@ if ( isset($_POST['nomecadpag'])) {
     exit; 
 }
 
+if ( isset($_POST['selectcliente'])) {
+    $selectcliente = $_POST['selectcliente'];
+    $selectservico = $_POST['selectservico'];
+    $valor = $_POST['valor']; 
+    $selectpag = $_POST['selectpag']; 
+    $valorentrada = $_POST['valorentrada']; 
+    $parcelas = $_POST['parcelas']; 
+    $prazo = $_POST['prazo']; 
+    $administrador = $_POST['administrador']; 
+    $register = $conn->prepare("INSERT INTO contrato (idcliente, idtiposervico, idtipopagamento, idadm, valor, prazoentrega, valorentrada, parcelas) VALUES (:idcliente, :idtiposervico, :idtipopagamento, :idadm, :valor, :prazoentrega, :valorentrada, :parcelas)");
+    $register->bindParam(':idcliente', $selectcliente);
+    $register->bindParam(':idtiposervico', $selectservico);
+    $register->bindParam(':idtipopagamento', $selectpag);
+    $register->bindParam(':idadm', $administrador);
+    $register->bindParam(':valor', $valor);
+    $register->bindParam(':prazoentrega', $prazo);
+    $register->bindParam(':valorentrada', $valorentrada);
+    $register->bindParam(':parcelas', $parcelas);
+    $register->execute();
+
+    header('Location: dashboard.php?page=contratacao');
+    exit; 
+}
 
 
 

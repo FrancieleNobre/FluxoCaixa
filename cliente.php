@@ -19,7 +19,7 @@
         <tbody>
             <?php
             $cliente = listar('*', 'cliente');
-            if ($contrato !== 'Vazio') {
+            if ($cliente !== 'Vazio') {
             foreach ($cliente as $clientes) {
                 $idcliente = $clientes->idcliente;
                 $nomeC = $clientes->nome;

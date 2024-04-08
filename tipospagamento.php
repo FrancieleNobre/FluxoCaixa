@@ -19,7 +19,7 @@
         <tbody>
             <?php
             $pagamento = listar('*', 'tipopagamento');
-            if ($contrato !== 'Vazio') {
+            if ($pagamento !== 'Vazio') {
                 foreach ($pagamento as $pagamento1) {
                     $idpagamento = $pagamento1->idtipopagamento;
                     $tipopagamento = $pagamento1->tipopagamento;

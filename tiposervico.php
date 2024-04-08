@@ -18,7 +18,7 @@
         <tbody>
             <?php
             $servico = listar('*', 'tiposervico');
-            if ($contrato !== 'Vazio') {
+            if ($servico !== 'Vazio') {
             foreach ($servico as $servicos) {
                 $idservico = $servicos->idtiposervico;
                 $tiposervico = $servicos->tiposervico;

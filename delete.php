@@ -49,4 +49,14 @@ if (isset($_GET['idservico'])) {
     header('location:dashboard.php?page=tipospagamento');
   }
 
+  if (isset($_GET['idcontrato'])) {
+    $id = $_GET['idcontrato'];
+    $delete = "DELETE FROM contrato WHERE idcontrato = :id";
+    $delete = $conn->prepare($delete);
+    $delete->bindParam(':id', $id);
+    $conn->beginTransaction();
+    $delete->execute();
+    $conn->commit();
+    header('location:dashboard.php?page=contratacao');
+  }
 
